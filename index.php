@@ -11,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
 <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="newdesign.css">
+<link rel="stylesheet" type="text/css" href="./css/layout.css">
 
 </head>
 <body id="bodyId">
