@@ -1,5 +1,5 @@
 <div class="bottomPanel">
-  <a href="#">Random All Samples</a>
+  <button class="randomAllButton">Random All Samples</button>
   <select id="musicSelect">
   <?php
     $dir    = './music/';

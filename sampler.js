@@ -57,18 +57,11 @@ function start(){
 // 	}
 // }
 
-// function randomize(){
-// 	var i=0;
-// 	bit = [];
-// 	for(i=0; i<8; i++){
-// 		bit.push(my_random(1, track_duration));
-// 	}
-//
-// 	document.getElementById("sampel1").value = bit[0];
-// 	document.getElementById("sampel2").value = bit[1];
-// 	document.getElementById("sampel3").value = bit[2];
-// 	document.getElementById("sampel4").value = bit[3];
-// }
+function randomAll(){
+	$("div[sample-index]").each(function(key, value){
+		losuj_jeden_sampel($(value).attr('sample-index'));
+	});
+}
 
 // function loop(){
 // 	s.stop();
@@ -132,7 +125,7 @@ function load_music(){
 			var i=0;
 			bit = [];
 			for(i=0; i<8; i++){
-				pos = my_random(1, track_duration)
+				pos = my_random(1, track_duration);
 				$(".buttonSpace[sample-index='" + i + "']").find(".samplePosition").val(pos);
 			}
 	  },
@@ -156,8 +149,8 @@ function load_music(){
 // }
 
 function losuj_jeden_sampel(ktory){
-	// document.getElementById("sampel"+ktory).value = Math.floor((Math.random() * track_duration) + 1);
-	$(".buttonSpace[sample-index='" + ktory + "']").find(".samplePosition").val(pos);
+	var random = my_random(1, track_duration);
+	$(".buttonSpace[sample-index='" + ktory + "']").find(".samplePosition").val(random);
 }
 
 // function mute(ktory){

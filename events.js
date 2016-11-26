@@ -7,6 +7,10 @@ $(document).ready( function() {
     losuj_jeden_sampel($(this).parent().attr('sample-index'));
   });
 
+  $(".randomAllButton").click( function(){
+    randomAll();
+  });
+
   $(".saveButton").click( function(){
     save($(this).parent().attr('sample-index'));
   });

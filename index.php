@@ -1,16 +1,30 @@
 <?php require "config.php"; ?>
 
 <!doctype html>
-
-<?php require "./html/header.php"; ?>
-
+<head>
+<?php insert("head.section"); ?>
+</head>
 <body id="bodyId">
+<section class="header">
+    <?php insert("layout/header"); ?>
+</section>
 
-  <?php require "./html/layout/header.php"; ?>
-  <?php require "./html/layout/settings.php"; ?>
-  <?php require "./html/layout/samples.php"; ?>
-  <?php require "./html/layout/footer.php"; ?>
+<section class="content">
+  <?php insert("layout/settings"); ?>
+  <?php insert("layout/samples"); ?>
+</section>
+
+<section class="footer">
+    <?php insert("layout/footer"); ?>
+</section>
+
 
 <script src="events.js"></script>
+</body>
+</html>
 
-<?php require "./html/footer.php"; ?>
+<?php 
+function insert($template){
+    require "./html/{$template}.php";
+}
+?>

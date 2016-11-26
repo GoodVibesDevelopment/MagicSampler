@@ -1,7 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+/** variables **/
+$bg-color: #a8e5eb;
+$color1: lighten($bg-color, 5%);
+$color2: darken($bg-color, 20%);
+$text-color: #000;
+
+/** mixins **/
+@mixin linear-gradient($direction, $color-stops...) {
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: linear-gradient($direction, $color-stops);
+}
+
 body {
-  background-color: black;
-  color: white;
-  font-family: 'Slabo 27px', serif;
+  background-color: $bg-color;
+  color: $text-color;
+  font-family: 'Source Sans Pro', serif;
 }
 
 .header {
@@ -10,10 +25,10 @@ body {
 }
 
 a {
-  color: white;
+  color: $text-color;
 }
 
-#samplesPanel {
+.samplesPanel {
   position: relative;
   top: 50px;
   left: 100px;
@@ -23,13 +38,31 @@ a {
   position: absolute;
   top: 0px;
   left: 0px;
+  font-size: 14px;
 }
+.content {
+  width: 80%;
+  margin: auto;
 
-.buttonSpace {
-  display: inline-block;
-  width: 100px;
-  text-align: center;
-  border: solid 2px white;
+  .buttonSpace {
+    display: inline-block;
+    width: 110px;
+    text-align: center;
+
+    .sampleButton {
+      margin: auto;
+      display: block;
+      width: 80px;
+      height: 80px;
+      background-color: $color2;
+      border: none;
+      margin-bottom: 20px;
+    }
+  }
+
+  input.sampleLength, input.samplePosition {
+    width: 50px;
+  }
 }
 
 .bottomPanel {
@@ -38,43 +71,3 @@ a {
   left: 100px;
 }
 
-.sampleButton {
-	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
-	background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
-	background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
-	background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
-	background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
-	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
-	background-color:#ffffff;
-	-moz-border-radius:26px;
-	-webkit-border-radius:26px;
-	border-radius:26px;
-	border:1px solid #dcdcdc;
-	display:inline-block;
-	cursor:pointer;
-	color:#666666;
-	font-family:Arial;
-	font-size:19px;
-	font-weight:bold;
-	padding:14px 34px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #ffffff;
-}
-.sampleButton:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
-	background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
-	background:-webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
-	background:-o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
-	background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
-	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
-	background-color:#f6f6f6;
-}
-.sampleButton:active {
-	position:relative;
-	top:1px;
-}
