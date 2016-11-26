@@ -5,7 +5,7 @@ var tempo=150;
 var position, duration = 2*(60000 / tempo);
 var trackDuration;
 var interval;
-var filename='big.mp3';
+var filename='guitar.mp3';
 var mute_array = [true, true, true, true];
 var recorded = true;
 var recorded_bytes = [];
