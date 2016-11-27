@@ -28,12 +28,6 @@ a {
   color: $text-color;
 }
 
-.samplesPanel {
-  position: relative;
-  top: 50px;
-  left: 100px;
-}
-
 #settingsPanel {
   position: absolute;
   top: 0px;
@@ -41,19 +35,18 @@ a {
   font-size: 14px;
 }
 .content {
-  width: 80%;
+  width: 50%;
   margin: auto;
 
   .buttonSpace {
     display: inline-block;
-    width: 110px;
     text-align: center;
 
     .sampleButton {
       margin: auto;
       display: block;
-      width: 80px;
-      height: 80px;
+      width: 180px;
+      height: 180px;
       background-color: $color2;
       border: none;
       margin-bottom: 20px;
@@ -69,5 +62,10 @@ a {
   position: relative;
   top: 200px;
   left: 100px;
+}
+
+.samplePositionSlider {
+  margin: auto;
+  display: block;
 }
 
