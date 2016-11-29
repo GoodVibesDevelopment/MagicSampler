@@ -1,5 +1,7 @@
 /************* CONFIG SECTION *******************/
 
+var DEFAULT_SAMPLE_DURATION = 2000;
+
 var soundObj; //sound object
 var tempo=150;
 var position, duration = 2*(60000 / tempo);
@@ -16,6 +18,7 @@ var kick = true;
 var counter=0;
 
 var samples = [];
+var selected = 1;
 
 
 /*********** PROGRAM SECTION ***************/
@@ -24,6 +27,17 @@ soundManager.onready(function() {
 	start();
 });
 
+function loadSamples() {
+    var i;
+    for (i = 0; i < 8; i++) {
+        samples[i] = {
+            id: i,
+            position: randomSongPostition(1, track_duration),
+            duration: DEFAULT_SAMPLE_DURATION
+        };
+        $(".buttonSpace[data-sample-id='" + i + "']").find(".samplePosition").val(samples[i].position);
+    }
+}
 function start(){
 	soundObj = soundManager.createSound({
 	  id: 'mySound',
@@ -31,14 +45,9 @@ function start(){
 	  autoLoad: true,
 	  autoPlay: false,
 	  onload: function() {
-			track_duration = this.durationEstimate;
-			//losowanie sampli
-			var i=0;
-			bit = [];
-			for(i=0; i<8; i++){
-				pos = my_random(1, track_duration)
-				$(".buttonSpace[sample-index='" + i + "']").find(".samplePosition").val(pos);
-			}
+        track_duration = this.durationEstimate;
+        $(".samplePositionSlider")[0].max = track_duration;
+        loadSamples();
 	  },
 	  volume: 100,
 	  multiShot: true
@@ -46,36 +55,11 @@ function start(){
 
 }
 
-// function stop(){
-// 	s.stop();
-// 	clearInterval(interval);
-// 	clearInterval(drumsInterval);
-// 	s.destruct();
-// 	counter = 0;
-// 	for(var i in [0, 1, 2, 3]){
-// 		samples[i].style.color='black';
-// 	}
-// }
-
 function randomAll(){
-	$("div[sample-index]").each(function(key, value){
-		losuj_jeden_sampel($(value).attr('sample-index'));
+	$("div[data-sample-id]").each(function(key, value){
+		losuj_jeden_sampel($(value).attr('data-sample-id'));
 	});
 }
-
-// function loop(){
-// 	s.stop();
-// 		position = document.getElementById("sampel"+((counter%4)+1)).value;
-// 		if(document.getElementById("sampel"+(((counter-1)%4)+1)) != null){
-// 			document.getElementById("sampel"+(((counter-1)%4)+1)).style.color = 'black';
-// 		}
-// 		document.getElementById("sampel"+((counter%4)+1)).style.color = 'red';
-// 		counter++;
-//
-// 		if(mute_array[((counter-1)%4)]){
-// 			losujSampel(position, duration);
-// 		}
-// }
 
 function playSampel(pos, duration){
 	if(soundObj.playState === 1){ //if play
@@ -87,30 +71,6 @@ function playSampel(pos, duration){
 	interval = setTimeout(function(){ soundObj.stop(); }, duration);
 }
 
-// function load_kick(){
-//   name = document.getElementById("kick_select").value;
-// 	kick_sound.destruct();
-// 	kick_sound = soundManager.createSound({
-// 	  id: 'myBeat2',
-// 	  url: 'kicks/'+name,
-// 	  autoLoad: true,
-// 	  autoPlay: false,
-// 	  volume: 100
-// 	});
-// }
-
-// function load_snare(){
-// 	name = document.getElementById("snare_select").value;
-// 	snare_sound.destruct();
-// 	snare_sound = soundManager.createSound({
-// 	  id: 'myBeat',
-// 	  url: 'snares/'+name,
-// 	  autoLoad: true,
-// 	  autoPlay: false,
-// 	  volume: 100
-// 	});
-// }
-
 function load_music(){
 	filename = document.getElementById("musicSelect").value;
 	soundObj.destruct();
@@ -121,46 +81,16 @@ function load_music(){
 	  autoPlay: false,
 		onload: function() {
 			track_duration = this.durationEstimate;
-			//losowanie sampli
-			var i=0;
-			bit = [];
-			for(i=0; i<8; i++){
-				pos = my_random(1, track_duration);
-				$(".buttonSpace[sample-index='" + i + "']").find(".samplePosition").val(pos);
-			}
+			loadSamples();
 	  },
 	  volume: 100
 	});
 }
 
-// function mix(){
-// 	var tmp = [
-// 						 document.getElementById("sampel1").value,
-// 						 document.getElementById("sampel2").value,
-// 						 document.getElementById("sampel3").value,
-// 						 document.getElementById("sampel4").value
-// 					 ];
-//
-// 		var i = 0;
-// 		for(i=0; i<4; i++){
-// 			var random = Math.floor((Math.random() * 4) + 1);
-// 			document.getElementById("sampel"+random).value = tmp[Math.floor(Math.random() * 4)];
-// 		}
-// }
-
 function losuj_jeden_sampel(ktory){
-	var random = my_random(1, track_duration);
-	$(".buttonSpace[sample-index='" + ktory + "']").find(".samplePosition").val(random);
+	var random = randomSongPostition(1, track_duration);
+	$(".buttonSpace[data-sample-id='" + ktory + "']").find(".samplePosition").val(random);
 }
-
-// function mute(ktory){
-// 	mute_array[ktory] = document.getElementById("mute"+(ktory+1)).checked;
-// }
-//
-// function set_tempo(){
-// 	tempo = document.getElementById("tempo").value;
-// 	duration = 2*(60000 / tempo);
-// }
 
 function save(ktory){
 var start = 0;
@@ -169,8 +99,8 @@ var sound = filename;
 var name = filename.substr(0, 3);
 	for(i=0; i<8; i++){
 		if(typeof ktory !== "undefined" && i != ktory) continue;
-		 start = $(".buttonSpace[sample-index='" + i +"']").find(".samplePosition").val();
-		 stop = $(".buttonSpace[sample-index='" + i +"']").find(".sampleLength").val();
+		 start = $(".buttonSpace[data-sample-id='" + i +"']").find(".samplePosition").val();
+		 stop = $(".buttonSpace[data-sample-id='" + i +"']").find(".sampleLength").val();
 
 		 start /= 1000;
 		 stop /= 1000;
@@ -201,7 +131,7 @@ var name = filename.substr(0, 3);
 // 	xmlhttp.send();
 // }
 
-function my_random(od, przedzial){
+function randomSongPostition(od, przedzial){
 		return Math.floor((Math.random() * przedzial) + od);
 }
 
