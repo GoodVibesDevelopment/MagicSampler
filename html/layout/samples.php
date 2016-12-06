@@ -4,10 +4,7 @@
     ?>
         <div class="buttonSpace" data-sample-id="<?= $i ?>">
           <button class="sampleButton"><?= $i+1 ?></button>
-          <button class="saveButton">SAVE</button>
-          <button class="randomButton">R</button>
-<!--          <div>Pos: <input class="samplePosition" /></div>-->
-<!--          <div>Len: <input class="sampleLength" value="--><?//= DEFAULT_SAMPLE_DURATION ?><!--" /></div>-->
+          <button class="saveButton">S</button>
         </div>
     <?php } ?>
 </div>

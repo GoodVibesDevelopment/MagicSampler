@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 @import "range.scss";
-
-/** variables **/
-$bg-color: #e7eb85;
-$color1: lighten($bg-color, 5%);
-$color2: darken($bg-color, 20%);
-$text-color: #000;
+@import "variables.scss";
 
 /** mixins **/
 @mixin linear-gradient($direction, $color-stops...) {
@@ -46,11 +41,16 @@ a {
     .sampleButton {
       margin: auto;
       display: block;
-      width: 180px;
-      height: 180px;
+      width: $sample-width;
+      height: $sample-height;
       background-color: $color2;
       border: none;
-      margin-bottom: 20px;
+    }
+
+    .saveButton {
+      position: relative;
+      top: -$sample-height;
+      left: 66px;
     }
   }
 
@@ -67,7 +67,7 @@ a {
 
 .samplePositionSlider {
   margin: auto;
-  width: 100%;
+  width: 50%;
   height: 10px;
 }
 

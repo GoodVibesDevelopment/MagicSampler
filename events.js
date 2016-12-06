@@ -1,3 +1,12 @@
+/* key shortcuts
+ * n=78  : change position -10
+ * m=77  : change position -1
+ * ,=188 : change position +1
+ * .=190 : change position +10
+ */
+
+var keys = [78, 77, 188, 190];
+
 $(document).ready( function() {
   $(".sampleButton").click( function(){
     var i = $(this).parent().data('sample-id');
@@ -23,6 +32,23 @@ $(document).ready( function() {
   });
 
   $( "body" ).keydown(function( event ) {
+    switch(event.which) {
+      case keys[0]:
+        postionChange(-10);
+        break;
+      case keys[1]:
+        postionChange(-1);
+        break;
+      case keys[2]:
+        postionChange(1);
+        break;
+      case keys[3]:
+        postionChange(10);
+        break;
+      default:
+        ;
+    }
+
     if($("#keyboardEnable").prop('checked')){
       if ( 49 <= event.which <= 56 ) {
        playSampel($(".buttonSpace[data-sample-id='" + (event.which - 49) + "']").find(".samplePosition").val(),
@@ -31,7 +57,7 @@ $(document).ready( function() {
     }
   });
 
-    $(".samplePositionSlider").change(function(){
+    $(".samplePositionSlider").on("input change", function(){
         samples[selected].position = $(this).val();
         $(".position").val(samples[selected].position);
     });

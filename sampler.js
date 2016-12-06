@@ -1,4 +1,4 @@
-/************* CONFIG SECTION *******************/
+/************* CONFIG SECTION ***************/
 
 var DEFAULT_SAMPLE_DURATION = 2000;
 
@@ -8,15 +8,6 @@ var position, duration = 2*(60000 / tempo);
 var trackDuration;
 var interval;
 var filename='guitar.mp3';
-var mute_array = [true, true, true, true];
-var recorded = true;
-var recorded_bytes = [];
-
-var snare = true;
-var kick = true;
-
-var counter=0;
-
 var samples = [];
 var selected = 1;
 
@@ -117,32 +108,12 @@ var name = filename.substr(0, 3);
 	}
 	//join();
 }
-//
-// function join(){
-// 	var xmlhttp;
-// 	// compatible with IE7+, Firefox, Chrome, Opera, Safari
-// 	xmlhttp = new XMLHttpRequest();
-// 	xmlhttp.onreadystatechange = function(){
-// 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-// 					callback(xmlhttp.responseText);
-// 			}
-// 	}
-// 	xmlhttp.open("GET", "http://localhost/magicsampler/join.php?name[0]=sampel0.mp3&name[1]=sampel1.mp3&name[2]=sampel2.mp3&name[3]=sampel3.mp3", true);
-// 	xmlhttp.send();
-// }
 
 function randomSongPostition(od, przedzial){
 		return Math.floor((Math.random() * przedzial) + od);
 }
 
-// var dr_counter = 1;
-// function playDrums(){
-// 	if(document.getElementById("stopa"+(((dr_counter%16)+1))).checked) {
-// 		kick_sound.play();
-// 	}
-// 	if(dr_counter%4 == 3) {
-// 		snare_sound.play();
-// 	}
-//
-// 	dr_counter++;
-// }
+function postionChange(howMuch){
+	samples[selected].position += parseInt(howMuch);
+	$(".position").val(samples[selected].position);
+}
