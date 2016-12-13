@@ -26,8 +26,8 @@ a {
 
 #settingsPanel {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   font-size: 14px;
 }
 .content {
@@ -70,7 +70,14 @@ a {
 .samplePositionSlider {
   margin: auto;
   width: 50%;
-  height: 10px;
+}
+
+.sampleDurationSlider {
+  transform: rotateZ(270deg);
+  width: 300px;
+  position: relative;
+  left: -350px;
+  top: 100px;
 }
 
 .duration, .position {

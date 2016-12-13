@@ -64,7 +64,7 @@ function playSampel(pos, duration){
 }
 
 function load_music(){
-	filename = document.getElementById("musicSelect").value;
+	filename = $(".musicSelect").val();
 	soundObj.destruct();
 	soundObj = soundManager.createSound({
 	  id: 'mySound',

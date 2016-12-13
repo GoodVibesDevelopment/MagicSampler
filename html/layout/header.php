@@ -19,3 +19,5 @@
     <input class="duration" />
 </section>
 <input class="samplePositionSlider" type="range" />
+    <br />
+<input class="sampleDurationSlider" type="range" min="1" max="10000" />

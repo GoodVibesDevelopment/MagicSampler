@@ -37,7 +37,7 @@ $(document).ready( function() {
     save($(this).parent().attr('data-sample-id'));
   });
 
-  $("#musicSelect").change( function(){
+  $(".musicSelect").change( function(){
     load_music();
   });
 
@@ -64,6 +64,11 @@ $(document).ready( function() {
         samples[selected].position = $(this).val();
         $(".position").val(samples[selected].position);
     });
+
+    $(".sampleDurationSlider").on("input change", function(){
+        samples[selected].duration = $(this).val();
+        $(".duration").val(samples[selected].duration);
+    });
 });
 
 function setPosition(position){
@@ -74,6 +79,7 @@ function setPosition(position){
 function activateSampel(sample){
   $(".position").val(sample.position);
   $(".samplePositionSlider").val(sample.position);
+  $(".sampleDurationSlider").val(sample.duration);
   $(".duration").val(sample.duration);
     selected = sample.id;
   $(".headerSettings .description").html("Selected " + (sample.id+1));
