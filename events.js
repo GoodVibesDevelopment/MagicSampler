@@ -8,6 +8,8 @@
 var keys = [78, 77, 188, 190];
 
 $(document).ready( function() {
+  loadFirstTrack();
+
   $(".sampleButton").click( function(){
     var i = $(this).parent().data('sample-id');
 
@@ -15,8 +17,16 @@ $(document).ready( function() {
     activateSampel(samples[i]);
   });
 
+  $("input.position").on('change', function(){
+      setPosition($(this).val());
+  });
+
+  $("input.duration").on('change', function(){
+    samples[selected].duration = $(this).val();
+  });
+
   $(".randomButton").click( function(){
-    losuj_jeden_sampel($(this).parent().attr('data-sample-id'));
+    randomSampel($(this).parent().data('sample-id'));
   });
 
   $(".randomAllButton").click( function(){
@@ -48,13 +58,6 @@ $(document).ready( function() {
       default:
         ;
     }
-
-    if($("#keyboardEnable").prop('checked')){
-      if ( 49 <= event.which <= 56 ) {
-       playSampel($(".buttonSpace[data-sample-id='" + (event.which - 49) + "']").find(".samplePosition").val(),
-                  $(".buttonSpace[data-sample-id='" + (event.which - 49) + "']").find(".sampleLength").val());
-      }
-    }
   });
 
     $(".samplePositionSlider").on("input change", function(){
@@ -63,9 +66,15 @@ $(document).ready( function() {
     });
 });
 
+function setPosition(position){
+    samples[selected].position = position;
+    $(".samplePositionSlider").val(position);
+}
+
 function activateSampel(sample){
   $(".position").val(sample.position);
   $(".samplePositionSlider").val(sample.position);
   $(".duration").val(sample.duration);
     selected = sample.id;
+  $(".headerSettings .description").html("Selected " + (sample.id+1));
 }

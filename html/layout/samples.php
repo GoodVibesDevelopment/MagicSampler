@@ -5,6 +5,7 @@
         <div class="buttonSpace" data-sample-id="<?= $i ?>">
           <button class="sampleButton"><?= $i+1 ?></button>
           <button class="saveButton">S</button>
+          <button class="randomButton">R</button>
         </div>
     <?php } ?>
 </div>

@@ -7,7 +7,7 @@ var tempo=150;
 var position, duration = 2*(60000 / tempo);
 var trackDuration;
 var interval;
-var filename='guitar.mp3';
+var filename;
 var samples = [];
 var selected = 1;
 
@@ -15,7 +15,7 @@ var selected = 1;
 /*********** PROGRAM SECTION ***************/
 
 soundManager.onready(function() {
-	start();
+	// start();
 });
 
 function loadSamples() {
@@ -39,6 +39,7 @@ function start(){
         track_duration = this.durationEstimate;
         $(".samplePositionSlider")[0].max = track_duration;
         loadSamples();
+	    activateSampel(samples[0]);
 	  },
 	  volume: 100,
 	  multiShot: true
@@ -48,7 +49,7 @@ function start(){
 
 function randomAll(){
 	$("div[data-sample-id]").each(function(key, value){
-		losuj_jeden_sampel($(value).attr('data-sample-id'));
+		randomSampel($(value).attr('data-sample-id'));
 	});
 }
 
@@ -78,9 +79,10 @@ function load_music(){
 	});
 }
 
-function losuj_jeden_sampel(ktory){
-	var random = randomSongPostition(1, track_duration);
-	$(".buttonSpace[data-sample-id='" + ktory + "']").find(".samplePosition").val(random);
+function randomSampel(sampelId){
+	var randomPosition = randomSongPostition(1, track_duration);
+	samples[sampelId].position = randomPosition;
+	activateSampel(samples[sampelId]);
 }
 
 function save(ktory){
@@ -116,4 +118,10 @@ function randomSongPostition(od, przedzial){
 function postionChange(howMuch){
 	samples[selected].position += parseInt(howMuch);
 	$(".position").val(samples[selected].position);
+	$(".samplePositionSlider").val(samples[selected].position);
+}
+
+function loadFirstTrack() {
+	filename = $("select.musicSelect option:selected").val();
+	start();
 }
