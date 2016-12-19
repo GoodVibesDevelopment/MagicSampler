@@ -85,30 +85,16 @@ function randomSampel(sampelId){
 	activateSampel(samples[sampelId]);
 }
 
-function save(ktory){
-var start = 0;
-var stop = 0;
-var sound = filename;
-var name = filename.substr(0, 3);
-	for(i=0; i<8; i++){
-		if(typeof ktory !== "undefined" && i != ktory) continue;
-		 start = $(".buttonSpace[data-sample-id='" + i +"']").find(".samplePosition").val();
-		 stop = $(".buttonSpace[data-sample-id='" + i +"']").find(".sampleLength").val();
+function save(id){
+	var start = samples[id].position;
+	var stop = samples[id].duration;
+	var sound = filename;
 
-		 start /= 1000;
-		 stop /= 1000;
-		 var xmlhttp;
-		 // compatible with IE7+, Firefox, Chrome, Opera, Safari
-		 xmlhttp = new XMLHttpRequest();
-		 xmlhttp.onreadystatechange = function(){
-				 if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-						 callback(xmlhttp.responseText);
-				 }
-		 }
-		 xmlhttp.open("GET", "http://localhost/magicsampler/slice.php?start="+start+"&stop="+stop+"&sound="+sound+"&name="+name+(i+1)+"_"+start, true);
-		 xmlhttp.send();
-	}
-	//join();
+	start /= 1000;
+	stop /= 1000;
+
+	var url = "slice.php?start="+start+"&stop="+stop+"&sound="+sound+"&name=sample";
+	window.open(url, '_blank');
 }
 
 function randomSongPostition(od, przedzial){

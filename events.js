@@ -34,7 +34,7 @@ $(document).ready( function() {
   });
 
   $(".saveButton").click( function(){
-    save($(this).parent().attr('data-sample-id'));
+    save($(this).parent().data('sample-id'));
   });
 
   $(".musicSelect").change( function(){

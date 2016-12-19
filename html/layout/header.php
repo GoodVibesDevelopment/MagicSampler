@@ -1,4 +1,4 @@
-<h1>Magic Sampler</h2>
+<h1>Magic Sampler</h1>
 <section>
     <button class="randomAllButton">Random All Samples</button>
     <select class="musicSelect">

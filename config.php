@@ -1,4 +1,3 @@
 <?php
   const COUNT_OF_SAMPLES = 6;
   const DEFAULT_SAMPLE_DURATION = 2000;
-?>
