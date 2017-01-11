@@ -20,4 +20,6 @@
 </section>
 <input class="samplePositionSlider" type="range" />
     <br />
+<input class="samplePositionSliderZoom" type="range" min="-1000" max="1000" value="0" step="1" />
+    <br />
 <input class="sampleDurationSlider" type="range" min="1" max="10000" />

@@ -65,6 +65,11 @@ $(document).ready( function() {
         $(".position").val(samples[selected].position);
     });
 
+    $(".samplePositionSliderZoom").on("mouseup", function(){
+        postionChange($(this).val());
+        setTimeout(function() { $(".samplePositionSliderZoom").val(0); }, 10);
+    });
+
     $(".sampleDurationSlider").on("input change", function(){
         samples[selected].duration = $(this).val();
         $(".duration").val(samples[selected].duration);

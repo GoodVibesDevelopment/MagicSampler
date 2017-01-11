@@ -48,9 +48,11 @@ function start(){
 }
 
 function randomAll(){
+	var currentSelected = selected;
 	$("div[data-sample-id]").each(function(key, value){
 		randomSampel($(value).attr('data-sample-id'));
 	});
+	randomSampel(currentSelected);
 }
 
 function playSampel(pos, duration){
