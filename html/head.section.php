@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <title>Magic Sampler</title>
-<script src="soundmanager/script/soundmanager2-nodebug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/soundmanager2/2.97a.20150601/script/soundmanager2-jsmin.js"></script>
 <script src="sampler.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
