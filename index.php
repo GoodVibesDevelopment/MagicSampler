@@ -14,6 +14,10 @@
   <?php insert("layout/samples"); ?>
 </section>
 
+<section>
+    <?php insert("layout/upload"); ?>
+</section>
+
 <section class="footer">
     <?php insert("layout/footer"); ?>
 </section>
